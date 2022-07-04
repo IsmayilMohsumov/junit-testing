@@ -13,6 +13,7 @@ public class StudentService {
     public void registerNewStudent(StudentRegistrationRequest request){
         String indexNumber = request.getStudent().getIndexNumber();
         Optional<Student> optionalStudent = studentRepository.selectStudentByIndexNumber(indexNumber);
+
         if (optionalStudent.isPresent()) {
             Student student = optionalStudent.get();
             if (student.getName().equals(request.getStudent().getName())) {
