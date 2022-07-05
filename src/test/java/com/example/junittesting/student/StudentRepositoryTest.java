@@ -37,7 +37,7 @@ class StudentRepositoryTest {
     }
 
     @Test
-    void itNotShouldSelectStudentByIndexNumber() {
+    void itNotShouldSelectStudentByIndexNumberWhenIndexNumberDoesNotExists() {
         //Given
         String indexNumber = "36460";
         //When
