@@ -53,7 +53,7 @@ class StudentServiceTest {
     }
 
     @Test
-    void itShouldNotSaveStudentWhenIndexNumberTaken() {
+    void itShouldNotSaveStudentWhenStudentExists() {
         //Given
         String indexNumber = "36467";
         UUID id = UUID.randomUUID();
@@ -62,7 +62,7 @@ class StudentServiceTest {
 
         StudentRegistrationRequest request = new StudentRegistrationRequest(student);
 
-        //given() - force to not return value
+        //given() - an existing customer is returned
         given(studentRepository.selectStudentByIndexNumber(indexNumber)).willReturn(Optional.of(student));
 
         //When
@@ -94,4 +94,6 @@ class StudentServiceTest {
         //Finally
         then(studentRepository).should(never()).save(any(Student.class));
     }
+
+
 }

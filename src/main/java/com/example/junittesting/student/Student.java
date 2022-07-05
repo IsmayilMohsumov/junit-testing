@@ -18,11 +18,11 @@ public class Student {
     @Id
     private UUID Id;
 
+    @Column(nullable = false)
     private String name;
 
     private String surname;
 
-    @NotNull
     @Column(nullable = false, unique = true)
     private String indexNumber;
 }
