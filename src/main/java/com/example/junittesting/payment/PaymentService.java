@@ -13,7 +13,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class PaymentService {
 
-    private static final List<Currency> ACCEPTED_CURRENCIES = List.of(Currency.values());
+    private static final List<Currency> ACCEPTED_CURRENCIES = List.of(Currency.USD, Currency.GPB);
 
     private final PaymentRepository paymentRepository;
     private final StudentRepository studentRepository;
@@ -44,7 +44,7 @@ public class PaymentService {
 
         // 4. If not debited throw
         if (!cardPaymentCharge.isCardDebited()) {
-            throw new IllegalStateException(String.format("Card not debited for customer %s", studentId));
+            throw new IllegalStateException(String.format("Card not debited for student %s", studentId));
         }
 
         // 5. Insert payment
