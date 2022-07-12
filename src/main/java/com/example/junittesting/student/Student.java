@@ -1,9 +1,11 @@
 package com.example.junittesting.student;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +16,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(allowGetters = true)
 public class Student {
     @Id
     private UUID Id;
@@ -25,4 +28,5 @@ public class Student {
 
     @Column(nullable = false, unique = true)
     private String indexNumber;
+
 }

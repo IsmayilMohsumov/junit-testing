@@ -20,6 +20,7 @@ public class PaymentService {
     private final CardPaymentCharger cardPaymentCharger;
 
     void chargeCard(UUID studentId, PaymentRequest paymentRequest){
+        // 1. Does customer exist if not throw
         boolean isStudentFound = studentRepository.findById(studentId).isPresent();
         if (!isStudentFound){
             throw new IllegalStateException(String.format("Student with id [%s] not found", studentId));

@@ -3,6 +3,7 @@ package com.example.junittesting.student;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -27,5 +28,9 @@ public class StudentService {
         }
 
         studentRepository.save(request.getStudent());
+    }
+
+    public List<Student> getAll() {
+        return studentRepository.findAll();
     }
 }
