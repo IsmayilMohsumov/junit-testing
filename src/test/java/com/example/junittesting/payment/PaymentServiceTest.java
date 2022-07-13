@@ -2,6 +2,7 @@ package com.example.junittesting.payment;
 
 import com.example.junittesting.student.Student;
 import com.example.junittesting.student.StudentRepository;
+import com.example.junittesting.twilio.SmsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -27,12 +28,16 @@ class PaymentServiceTest {
     @Mock
     private  CardPaymentCharger cardPaymentCharger;
 
+    @Mock
+    private SmsService smsService;
+
     private PaymentService underTest;
+
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        underTest = new PaymentService(paymentRepository,studentRepository,cardPaymentCharger);
+        underTest = new PaymentService(paymentRepository,studentRepository,cardPaymentCharger,smsService);
     }
 
     @Test

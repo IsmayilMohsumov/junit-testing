@@ -2,6 +2,7 @@ package com.example.junittesting.payment;
 
 import com.example.junittesting.student.Student;
 import com.example.junittesting.student.StudentRegistrationRequest;
+import com.example.junittesting.student.StudentRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,6 +36,9 @@ class PaymentIntegrationTest {
     @Autowired
     private PaymentRepository paymentRepository;
 
+    @Autowired
+    private StudentRepository studentRepository;
+
 //    @Autowired
     private MockMvc mockMvc;
 
@@ -46,28 +50,17 @@ class PaymentIntegrationTest {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
     }
     @Test
-    void itShouldGetString() throws Exception {
-        //Given
-        //When
-        ResultActions resultActions = mockMvc.perform(get("/api/v1/student-controller/test")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("Hello")));
-
-        //Then
-        resultActions.andExpect(status().isOk());
-    }
-
-    @Test
     void itShouldCreatePaymentSuccessfully() throws Exception {
-        // Given a student
+        //Given
         UUID studentId = UUID.randomUUID();
         String indexNumber = "36467";
         Student student = new Student(studentId,"Ismayil","Mohsumova",indexNumber);
 
         StudentRegistrationRequest studentRegistrationRequest = new StudentRegistrationRequest(student);
 
-        // ... Register
+        //When
         String API_PATH = "/api/v1/student-controller";
-        ResultActions studentRegResultActions = mockMvc.perform(put(API_PATH)
+        ResultActions studentRegResultActions = mockMvc.perform(post(API_PATH)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(Objects.requireNonNull(objectToJson(studentRegistrationRequest)))
         );
