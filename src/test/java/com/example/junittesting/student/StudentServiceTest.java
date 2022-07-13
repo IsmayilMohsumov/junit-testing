@@ -50,6 +50,8 @@ class StudentServiceTest {
         then(studentRepository).should().save(studentArgumentCaptor.capture());
         Student studentArgumentCaptorValue = studentArgumentCaptor.getValue();
         assertThat(studentArgumentCaptorValue).isEqualTo(student);
+//        assertEquals(studentArgumentCaptorValue,student); The same with the code in line 52.
+
     }
 
     @Test
