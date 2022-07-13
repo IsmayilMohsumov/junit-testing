@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +20,7 @@ import java.util.UUID;
 @JsonIgnoreProperties(allowGetters = true)
 public class Student {
     @Id
+    @Type(type="org.hibernate.type.UUIDCharType")
     private UUID Id;
 
     @Column(nullable = false)

@@ -11,7 +11,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class StudentService {
     private final StudentRepository studentRepository;
-    public void registerNewStudent(StudentRegistrationRequest request){
+    public void  registerNewStudent(StudentRegistrationRequest request){
         String indexNumber = request.getStudent().getIndexNumber();
         Optional<Student> optionalStudent = studentRepository.selectStudentByIndexNumber(indexNumber);
 
@@ -32,5 +32,15 @@ public class StudentService {
 
     public List<Student> getAll() {
         return studentRepository.findAll();
+    }
+
+    public Student getStudentById(UUID studentId) {
+        return studentRepository.findById(studentId)
+                .orElseThrow(()-> new IllegalStateException(String.format("There is no student with this id [%s]" , studentId)));
+    }
+
+    public Student getStudentByIndexNumber(String indexNumber) {
+        return studentRepository.selectStudentByIndexNumber(indexNumber)
+                .orElseThrow(()-> new IllegalStateException(String.format("There is no student with this indexNumber [%s]" , indexNumber)));
     }
 }
