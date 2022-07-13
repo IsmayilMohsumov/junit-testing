@@ -1,10 +1,7 @@
 package com.example.junittesting.payment;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -15,7 +12,7 @@ public class PaymentController {
 
     private final PaymentService paymentService;
 
-    @RequestMapping
+    @PostMapping
     public void makePayment(@RequestBody PaymentRequest paymentRequest){
         paymentService.chargeCard(paymentRequest.getPayment().getStudentId(), paymentRequest);
     }

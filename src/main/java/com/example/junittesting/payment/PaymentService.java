@@ -2,6 +2,8 @@ package com.example.junittesting.payment;
 
 import com.example.junittesting.student.Student;
 import com.example.junittesting.student.StudentRepository;
+import com.example.junittesting.twilio.SmsRequest;
+import com.example.junittesting.twilio.SmsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -54,7 +56,6 @@ public class PaymentService {
         paymentRepository.save(paymentRequest.getPayment());
 
         // 6. TODO: send sms
-
 
     }
 }
